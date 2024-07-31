@@ -1,3 +1,4 @@
+const Usuario = require("../models/Usuario");
 const cpfRegex = new RegExp(/^\d{11}$/);
 const senhaRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,16}$/);
 
@@ -41,7 +42,7 @@ class UsuarioController {
             }
 
 
-            const usuario = await Usuario.create({ 
+           await Usuario.create({ 
                 ...dados,
                 cep: cepNumeros,
                 cpf: cpfNumeros,

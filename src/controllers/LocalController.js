@@ -1,3 +1,5 @@
+const Local = require("../models/Local");
+
 class LocalController {
     async cadastrarLocal(request, response){
         try {
@@ -6,7 +8,7 @@ class LocalController {
                 return response.status(400).json({ mensagem: "Todos os campos obrigatórios devem ser preenchidos." });
             }
             const cepNumeros = dados.cep.replace(/\D/g, '');
-            const local = await Local.create({
+           await Local.create({
                 nome,
                 descricao,
                 cep: cepNumeros,
