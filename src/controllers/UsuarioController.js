@@ -43,10 +43,10 @@ class UsuarioController {
 
             const usuario = await Usuario.create({ 
                 ...dados,
-                cpf: cpfNumeros,
                 cep: cepNumeros,
-                senha_hash: dados.senha})
-                
+                cpf: cpfNumeros,
+                senha: dados.senha})
+
             return response.status(201).json({mensagem:"Usuário cadastrado com sucesso!"})
 
 
