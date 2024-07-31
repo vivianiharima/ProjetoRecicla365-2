@@ -5,9 +5,9 @@ const locaisRoutes = new Router();
 
 
 locaisRoutes.post('/', LocalController.cadastrarLocal);
-locaisRoutes.get('/', LocalController.listarLocal);
+locaisRoutes.get('/:id', LocalController.listarLocal);
 locaisRoutes.get('/', LocalController.listarTudo);
-locaisRoutes.put('/', LocalController.atualizarLocal);
+locaisRoutes.put('/:id', LocalController.atualizarLocal);
 
 
 

@@ -1,5 +1,6 @@
-const { compareSync } = require("bcryptjs")
-const { sign } = require('jsonwebtoken')
+const Usuario = require("../models/Usuario");
+const { compareSync } = require("bcryptjs");
+const { sign } = require('jsonwebtoken');
 
 class LoginController {
     async logar(request, response){
