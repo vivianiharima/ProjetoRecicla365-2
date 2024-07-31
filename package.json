@@ -4,7 +4,6 @@
     "start:prod": "node src/index.js",
     "start:dev": "nodemon src/index.js"
   },
-  
   "devDependencies": {
     "nodemon": "^3.1.4",
     "sequelize-cli": "^6.6.2"
