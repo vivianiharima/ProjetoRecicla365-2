@@ -34,7 +34,8 @@ class LocalController {
 
             return response.json(local)
         } catch (error) {
-              return response.status(500).json({mensagem: 'Erro ao listar local'})
+            console.log(error)
+            return response.status(500).json({mensagem: 'Erro ao listar local'})
         }
     }
 
@@ -46,6 +47,7 @@ class LocalController {
             }
             return response.json({locais})
         } catch (error) {
+            console.log(error)
             return response.status(500).json({mensagem: 'Erro ao listar local'})
         }
     }
@@ -79,7 +81,25 @@ class LocalController {
             return response.status(201).json({localAtualizado})
 
         } catch (error) {
+            console.log(error)
             return response.status(500).json({mensagem: 'Erro ao atualizar o local'})
+        }
+    }
+
+    async deletarLocal(request, response){
+        try {
+            const id = request.params.id
+            const local = await Local.findByPk(id)
+            if(!local){
+                return response.status(404).json({mensagem: "Local não encontrado"})
+            }
+            await local.destroy()
+            return response.status(200).json()
+
+        } catch (error) {
+            console.log(error)
+            return response.status(500).json({mensagem: 'Erro ao deletar curso'
+            })
         }
     }
 };
