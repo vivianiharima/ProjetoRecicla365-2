@@ -17,7 +17,8 @@ class LocalController {
                 rua: dados.rua,          
                 cidade: dados.cidade,
                 estado: dados.estado,
-                complemento: dados.complemento
+                complemento: dados.complemento,
+                usuarioId
             });
             return response.status(201).json({mensagem:"Local de coleta cadastrado com sucesso!"})
         }catch(error){
