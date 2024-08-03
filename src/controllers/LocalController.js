@@ -1,4 +1,5 @@
 const Local = require("../models/Local");
+const { pegarCoordenadasPeloCep, gerarLinkGoogleMaps } = require("../services/maplink.service");
 
 class LocalController {
     async cadastrarLocal(request, response){
@@ -98,8 +99,41 @@ class LocalController {
 
         } catch (error) {
             console.log(error)
-            return response.status(500).json({mensagem: 'Erro ao deletar curso'
-            })
+            return response.status(500).json({mensagem: 'Erro ao deletar local'})
+        }
+    }
+
+    async gerarLinkMapa(request, response){
+        try {
+
+            const localId = request.params.id;
+            const userId = request.user.id;
+
+            const local = await Local.findOne({
+                where: {
+                    id: localId,
+                    userId: userId
+                }
+            });
+    
+            if(!local){
+                return response.status(404).json({mensagem: "Local não encontrado"})
+            }
+
+            const { latitude, longitude } = await pegarCoordenadasPeloCep(local.cep);
+
+            if(!latitude || !longitude){
+                return response.status(404).json({ mensagem: "Coordenadas não encontradas para o CEP fornecido" });
+            }
+
+            
+            const linkMapa = gerarLinkGoogleMaps(latitude, longitude);
+                return response.status(200).json({linkMapa});
+    
+
+        } catch (error) {
+            console.log(error)
+            return response.status(500).json({mensagem: 'Erro ao gerar link do Google Maps'})
         }
     }
 };
