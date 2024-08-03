@@ -8,7 +8,7 @@ function verificaToken(request, response, next){
         if(!token){
             return response.status(401).json({mensagem:'Token não fornecido'})
         }
-        const jwt = token.split('')[1];
+        const jwt = token.split(' ')[1];
 
         if(!jwt){
             return response.status(401).json({mensagem:'Token não fornecido'})
