@@ -9,14 +9,15 @@ class LocalController {
                 return response.status(400).json({ mensagem: "Todos os campos obrigatórios devem ser preenchidos." });
             }
             const cepNumeros = dados.cep.replace(/\D/g, '');
+            
            await Local.create({
-                nome,
-                descricao,
-                cep: cepNumeros,
-                rua,
-                cidade,
-                estado,
-                complemento
+                nome: dados.nome,
+                descricao: dados.descricao, 
+                cep: cepNumeros,         
+                rua: dados.rua,          
+                cidade: dados.cidade,
+                estado: dados.estado,
+                complemento: dados.complemento
             });
             return response.status(201).json({mensagem:"Local de coleta cadastrado com sucesso!"})
         }catch(error){
@@ -43,7 +44,7 @@ class LocalController {
     async listarTudo(request, response){
         try {
             const locais = await Local.findAll()
-            if(!locais){
+            if(locais.length === 0){
                 return response.status(404).json({mensagem:"Nenhum local foi encontrado"})
             }
             return response.json({locais})
@@ -55,9 +56,18 @@ class LocalController {
 
     async atualizarLocal(request, response){
         try {
-            const id = request.params.id
-            const dados = request.body
-            const local = await Local.findByPk(id)
+            const localId = request.params.id;
+            const userId = request.usuarioId; //userId para não confundir com o usuarioId
+            const dados = request.body;
+
+            const local = await Local.findOne({
+                where: {
+                    id: localId,
+                    usuarioId: userId
+                }
+            });
+         
+            
 
             if(!local){
                 return response.status(404).json({mensagem: "Local não encontrado"})
@@ -77,9 +87,7 @@ class LocalController {
                 { where: { id } } 
             );
 
-            const localAtualizado = await Local.findByPk(id);
-           
-            return response.status(201).json({localAtualizado})
+            return response.status(200).json({ mensagem: "Local atualizado com sucesso:", local});
 
         } catch (error) {
             console.log(error)
@@ -89,17 +97,25 @@ class LocalController {
 
     async deletarLocal(request, response){
         try {
-            const id = request.params.id
-            const local = await Local.findByPk(id)
+            const localId = request.params.id;
+            const userId = request.usuarioId; 
+    
+            const local = await Local.findOne({
+                where: {
+                    id: localId,
+                    usuarioId: userId
+                }
+            });
+
             if(!local){
                 return response.status(404).json({mensagem: "Local não encontrado"})
             }
             await local.destroy()
-            return response.status(200).json()
+            return response.status(200).json({mensagem:'Local excluído com sucesso'})
 
         } catch (error) {
             console.log(error)
-            return response.status(500).json({mensagem: 'Erro ao deletar local'})
+            return response.status(500).json({mensagem: 'Erro ao excluir local'})
         }
     }
 
