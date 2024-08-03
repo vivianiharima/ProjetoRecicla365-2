@@ -27,33 +27,76 @@
         "description": "Endpoint para cadastrar usuários",
         "parameters": [
           {
-            "name": "body",
+            "name": "Usuario",
             "in": "body",
+            "description": "Cadastra usuário",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "nome": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Usuario de teste"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "teste@gmail.com"
                 },
                 "senha": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "teste123"
                 },
                 "cpf": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "11111111111"
                 },
                 "sexo": {
-                  "example": "any"
-                },
-                "data_nascimento": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Feminino"
                 },
                 "cep": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "11111111"
+                },
+                "rua": {
+                  "type": "string",
+                  "example": "teste"
+                },
+                "bairro": {
+                  "type": "string",
+                  "example": "teste"
+                },
+                "cidade": {
+                  "type": "string",
+                  "example": "teste"
+                },
+                "estado": {
+                  "type": "string",
+                  "example": "teste"
+                },
+                "complemento": {
+                  "type": "string",
+                  "example": "teste"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "20/02/2000"
                 }
-              }
+              },
+              "required": [
+                "nome",
+                "email",
+                "senha",
+                "cpf",
+                "sexo",
+                "cep",
+                "rua",
+                "bairro",
+                "cidade",
+                "estado",
+                "complemento",
+                "data_nascimento"
+              ]
             }
           }
         ],
@@ -78,18 +121,26 @@
         "description": "Para logar um usuário",
         "parameters": [
           {
-            "name": "body",
+            "name": "loginUsuario",
             "in": "body",
+            "description": "Login de usuário",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "teste@gmail.com"
                 },
                 "senha": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "teste123"
                 }
-              }
+              },
+              "required": [
+                "email",
+                "senha"
+              ]
             }
           }
         ],
@@ -114,12 +165,17 @@
         "tags": [
           "Locais"
         ],
-        "description": "Endpoint para cadastrar, listar e manipular locais",
+        "description": "Endpoint para cadastrar novo local",
         "parameters": [
           {
-            "name": "locaisColeta",
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "cadastrarLocal",
             "in": "body",
-            "description": "Locais de coleta",
+            "description": "Dados do local",
             "required": true,
             "schema": {
               "type": "object",
@@ -168,11 +224,6 @@
                 "complemento"
               ]
             }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -194,61 +245,8 @@
         "tags": [
           "Locais"
         ],
-        "description": "Endpoint para cadastrar, listar e manipular locais",
+        "description": "Listar todos os locais",
         "parameters": [
-          {
-            "name": "locaisColeta",
-            "in": "body",
-            "description": "Locais de coleta",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome": {
-                  "type": "string",
-                  "example": "local de teste"
-                },
-                "descricao": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cep": {
-                  "type": "string",
-                  "example": "11111111"
-                },
-                "rua": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "bairro": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cidade": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "estado": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "complemento": {
-                  "type": "string",
-                  "example": "teste"
-                }
-              },
-              "required": [
-                "nome",
-                "descricao",
-                "cep",
-                "rua",
-                "bairro",
-                "cidade",
-                "estado",
-                "complemento"
-              ]
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -276,65 +274,26 @@
         "tags": [
           "Locais"
         ],
-        "description": "Endpoint para cadastrar, listar e manipular locais",
+        "description": "Endpoint para listar um local pelo Id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "locaisColeta",
-            "in": "body",
-            "description": "Locais de coleta",
-            "required": true,
+            "type": "string",
+            "description": "Id do local",
             "schema": {
               "type": "object",
               "properties": {
-                "nome": {
+                "type": {
                   "type": "string",
-                  "example": "local de teste"
+                  "example": "integer"
                 },
-                "descricao": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cep": {
-                  "type": "string",
-                  "example": "11111111"
-                },
-                "rua": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "bairro": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cidade": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "estado": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "complemento": {
-                  "type": "string",
-                  "example": "teste"
+                "example": {
+                  "type": "number",
+                  "example": 1
                 }
-              },
-              "required": [
-                "nome",
-                "descricao",
-                "cep",
-                "rua",
-                "bairro",
-                "cidade",
-                "estado",
-                "complemento"
-              ]
+              }
             }
           },
           {
@@ -362,7 +321,7 @@
         "tags": [
           "Locais"
         ],
-        "description": "Endpoint para cadastrar, listar e manipular locais",
+        "description": "Endpoint para atualizar local já existente",
         "parameters": [
           {
             "name": "id",
@@ -371,9 +330,14 @@
             "type": "string"
           },
           {
-            "name": "locaisColeta",
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "atualizaLocal",
             "in": "body",
-            "description": "Locais de coleta",
+            "description": "Atualiza local",
             "required": true,
             "schema": {
               "type": "object",
@@ -422,11 +386,6 @@
                 "complemento"
               ]
             }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -448,65 +407,26 @@
         "tags": [
           "Locais"
         ],
-        "description": "Endpoint para cadastrar, listar e manipular locais",
+        "description": "Endpoint para deletar local",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "locaisColeta",
-            "in": "body",
-            "description": "Locais de coleta",
-            "required": true,
+            "type": "string",
+            "description": "Id do local a ser deletado",
             "schema": {
               "type": "object",
               "properties": {
-                "nome": {
+                "type": {
                   "type": "string",
-                  "example": "local de teste"
+                  "example": "integer"
                 },
-                "descricao": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cep": {
-                  "type": "string",
-                  "example": "11111111"
-                },
-                "rua": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "bairro": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cidade": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "estado": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "complemento": {
-                  "type": "string",
-                  "example": "teste"
+                "example": {
+                  "type": "number",
+                  "example": 1
                 }
-              },
-              "required": [
-                "nome",
-                "descricao",
-                "cep",
-                "rua",
-                "bairro",
-                "cidade",
-                "estado",
-                "complemento"
-              ]
+              }
             }
           },
           {
@@ -536,65 +456,26 @@
         "tags": [
           "Locais"
         ],
-        "description": "Endpoint para cadastrar, listar e manipular locais",
+        "description": "Endpoint para gerar link Google Maps do local",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "locaisColeta",
-            "in": "body",
-            "description": "Locais de coleta",
-            "required": true,
+            "type": "string",
+            "description": "Id do local para gerar link do Google Maps",
             "schema": {
               "type": "object",
               "properties": {
-                "nome": {
+                "type": {
                   "type": "string",
-                  "example": "local de teste"
+                  "example": "integer"
                 },
-                "descricao": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cep": {
-                  "type": "string",
-                  "example": "11111111"
-                },
-                "rua": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "bairro": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "cidade": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "estado": {
-                  "type": "string",
-                  "example": "teste"
-                },
-                "complemento": {
-                  "type": "string",
-                  "example": "teste"
+                "example": {
+                  "type": "number",
+                  "example": 1
                 }
-              },
-              "required": [
-                "nome",
-                "descricao",
-                "cep",
-                "rua",
-                "bairro",
-                "cidade",
-                "estado",
-                "complemento"
-              ]
+              }
             }
           },
           {

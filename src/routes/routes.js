@@ -12,7 +12,8 @@ const routes = new Router();
 
 
 routes.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-routes.use('/usuarios', usuariosRoutes/*
+routes.use('/usuarios', usuariosRoutes
+    /*
     #swagger.tags = ['Usuários'],
     #swagger.description = 'Endpoint para cadastrar usuários',
     #swagger.parameters['Usuario'] = {
@@ -20,12 +21,12 @@ routes.use('/usuarios', usuariosRoutes/*
         description: 'Cadastro de usuário',
         required: true,
         schema: { 
-            $nome: "usuario de teste"
+            $nome: "Usuario de teste",
             $email: "teste@gmail.com",
             $senha: "teste123",
             $cpf: "11111111111",
             $senha: "teste123",
-            $sexo: "feminino",
+            $sexo: "Feminino",
             $cep: "11111111",
             $rua: "teste",
             $bairro: "teste",
@@ -33,7 +34,6 @@ routes.use('/usuarios', usuariosRoutes/*
             $estado: "teste",
             $complemento: "teste",
             $data_nascimento: "20/02/2000"
-
         }
     }
 */
@@ -63,7 +63,7 @@ routes.use('/locais',verificaToken, locaisRoutes
             in: 'body',
             description: 'Locais de coleta',
             required: true,
-            schema: { 
+            schema{
                 $nome: "local de teste",
                 $descricao: "teste",
                 $cep: "11111111",
