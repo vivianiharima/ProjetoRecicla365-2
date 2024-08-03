@@ -1,6 +1,7 @@
 const Usuario = require("../models/Usuario");
+const { Op } = require('sequelize');
 const cpfRegex = new RegExp(/^\d{11}$/);
-const senhaRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,16}$/);
+const senhaRegex = new RegExp(/^(?=.*\d)[A-Za-z\d]{8,16}$/);
 
 
 class UsuarioController {
@@ -35,7 +36,7 @@ class UsuarioController {
             if(usuarioCadastrado){
                 return response.status(400).json({mensagem:"Usuário já cadastrado"})
             }
-
+            console.log('Senha recebida:', `'${dados.senha}'`);
 
             if(senhaRegex.test(dados.senha) === false){
                 return response.status(400).json({mensagem:"Senha em formato inválido"})
@@ -43,10 +44,19 @@ class UsuarioController {
 
 
            await Usuario.create({ 
-                ...dados,
-                cep: cepNumeros,
+                nome: dados.nome,
+                email: dados.email,
+                senha: dados.senha,
                 cpf: cpfNumeros,
-                senha: dados.senha})
+                sexo: dados.sexo,
+                cep: cepNumeros,
+                rua: dados.rua,
+                bairro: dados.bairro,
+                cidade: dados.cidade,
+                estado: dados.estado,
+                complemento: dados.complemento,
+                data_nascimento: dados.data_nascimento
+                })
 
             return response.status(201).json({mensagem:"Usuário cadastrado com sucesso!"})
 

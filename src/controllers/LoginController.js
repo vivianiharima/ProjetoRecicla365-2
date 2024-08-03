@@ -13,13 +13,15 @@ class LoginController {
 
             const usuario = await Usuario.findOne({
                 where: { email: dados.email }
-            })
+            });
+
             if(!usuario){
                 return response.status(404).json({
                     mensagem: "Usuário não encontrado!"})
             }
 
-            const senhaCerta = compareSync(dados.senha, usuario.senha_hash)
+            const senhaCerta = compareSync(dados.senha, usuario.senha)
+            
             if(!senhaCerta){
                 return response.status(404).json({
                     mensagem: 'Usuário não encontrado'})
