@@ -7,51 +7,55 @@ Essa plataforma contribui com a troca de informação sobre os locais de coleta,
 
 ## Sobre o projeto
 
-Esse projeto foi desenvolvido em JavaScript com as técnologias:
-- **Node.js** (JavaScript runtime);
+Esse projeto foi desenvolvido em JavaScript com as tecnologias:
+- **Node.js** (JavaScript runtime)
 - **Express** (Framework para criação de APIs)
-- **Sequelize** (ORM para interação com o banco de dados PostgreSQL), 
-- **Nominatim** (API que utiliza os dados do OpenStreetMap para converter endereços em coordenadas geográficas e vice-versa).
+- **Sequelize** (ORM para interação com o banco de dados PostgreSQL) 
+- **Nominatim** (API que utiliza os dados do OpenStreetMap para converter endereços em coordenadas geográficas e vice-versa)
 
 Além de fazer uso também das bibliotecas:
-- **Axios** (Requisições HTTP);
-- **Bcriptjs** (Criptografia de senhas);
-- **Cors** (Controle de acesso a recursos);
-- **Dotev** (Configuração de variáveis de ambiente);
-- **Jsonwebtoken** (Gerenciamento de tokens JWT);
-- **Pg** e **pg-hstore** (Utilitários para PostgreSQL);
-- **Swagger-autogen** e **swagger-ui-express** (Documentação e visualização da API).
+- **Axios** (Requisições HTTP)
+- **Bcriptjs** (Criptografia de senhas)
+- **Cors** (Controle de acesso a recursos)
+- **Dotev** (Configuração de variáveis de ambiente)
+- **Jsonwebtoken** (Gerenciamento de tokens JWT)
+- **Pg** e **pg-hstore** (Utilitários para PostgreSQL)
+- **Swagger-autogen** e **swagger-ui-express** (Documentação e visualização da API)
 
 
 ## Como funciona
 
 ### Configuração inicial:
 
-1. Rode o comando no terminal para instalar as dependências: npm install
-2. Rode o comando no terminal para criar seu arquivo .env: cp .env_example .env
-3. Edite o arquivo .env, substituindo os dados de exmplo com as suas variáveis de ambiente
-4. Rode o comando no terminal para executar as migrações no banco de dados: npx sequelize-cli db:migrate
+1. Instale as dependências com o comando: 
+npm install
+2. Crie seu arquivo .env com o comando: 
+cp .env_example .env
+3. Edite o arquivo .env, substituindo os dados de exemplo pelas suas variáveis de ambiente.
+4. Execute as migrações no banco de dados com o comando: 
+npx sequelize-cli db:migrate
 
 ### Para rodar o projeto localmente:
-- Rode no terminal o comando: npm run start:dev
+- Execute o comando: 
+npm run start:dev
 
 ## Funcionalidades
 
 ### Funcionalidades públicas:
-- Cadastro de usuários;
-- Login de Usuários.
+- Cadastro de usuários
+- Login de Usuários
 
 ### Funcionalidades privadas:
-- Cadastro de locais de coleta;
-- Edição de locais de coleta;
-- Listagem de todos os locais;
-- Listagem de um local específico pelo Id;
-- Exclusão de local;
-- Geração de link do Google Maps para local específico pelo Id.
+- Cadastro de locais de coleta
+- Edição de locais de coleta
+- Listagem de todos os locais
+- Listagem de um local específico pelo Id
+- Exclusão de local
+- Geração de link do Google Maps para local específico pelo Id
 
 ### Exemplo de uso:
-Para adicionar ponto de coleta, faça uma requisição **POST** para o endpoint '/locais', da seguinte forma:
-Exemplo de requisição no body:
+Para adicionar um ponto de coleta, faça uma requisição **POST** para o endpoint **'/locais'**, da seguinte forma:
+- Exemplo de requisição no body:
         '{
            "nome": "Ponto de Coleta 1",
            "descricao": "Coleta de resíduos orgânicos.",
@@ -63,13 +67,13 @@ Exemplo de requisição no body:
            "complemento": "Próximo ao edifício PrimeTower"
          }'
 
-Exemplo de resposta:
+- Exemplo de resposta:
         '{
             "mensagem": "Local de coleta cadastrado com sucesso!"
         }'
 
 ### Melhorias para o futuro:
-* Procurar alternativas para a biblioteca Nominatim para evitar limitações na quantidade de CEPs que podem ser consultados para obter os dados que geram o link do Google Maps.
-* Adicionar mais funcionalidades de gerenciamento de usuários (edição, exclusão, listagem).
-* Integrar com APIs como ViaCEP para melhorar a experiência do usuário, facilitando o preenchimento de informações.
+* Buscar alternativas para a biblioteca Nominatim para evitar limitações na quantidade de CEPs consultados e melhorar a geração do link do Google Maps.
+* Adicionar mais funcionalidades de gerenciamento de usuários, como edição, exclusão e listagem.
+* Integrar com APIs como ViaCEP para facilitar o preenchimento de informações e melhorar a experiência do usuário.
 
