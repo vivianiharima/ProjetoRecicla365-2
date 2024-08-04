@@ -76,4 +76,5 @@ Para adicionar um ponto de coleta, faça uma requisição **POST** para o endpoi
 * Buscar alternativas para a biblioteca Nominatim para evitar limitações na quantidade de CEPs consultados e melhorar a geração do link do Google Maps.
 * Adicionar mais funcionalidades de gerenciamento de usuários, como edição, exclusão e listagem.
 * Integrar com APIs como ViaCEP para facilitar o preenchimento de informações e melhorar a experiência do usuário.
+* Adicionar categorias para os tipos de resídio que são coletados em cada local e adicionar a funcionalidade de listar os locais por categoria.
 
