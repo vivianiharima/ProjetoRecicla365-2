@@ -127,12 +127,12 @@ class LocalController {
         try {
 
             const localId = request.params.id;
-            const userId = request.user.id;
+            const userId = request.usuarioId;
 
             const local = await Local.findOne({
                 where: {
                     id: localId,
-                    userId: userId
+                    usuarioId: userId
                 }
             });
     
@@ -140,14 +140,12 @@ class LocalController {
                 return response.status(404).json({mensagem: "Local não encontrado"})
             }
 
-            const { latitude, longitude } = await pegarCoordenadasPeloCep(local.cep);
+            const coordenadas = await pegarCoordenadasPeloCep(local.cep);
 
-            if(!latitude || !longitude){
+            if (!coordenadas || !coordenadas.latitude || !coordenadas.longitude) {
                 return response.status(404).json({ mensagem: "Coordenadas não encontradas para o CEP fornecido" });
             }
-
-            
-            const linkMapa = gerarLinkGoogleMaps(latitude, longitude);
+            const linkMapa = await gerarLinkGoogleMaps(coordenadas.latitude, coordenadas.longitude);
                 return response.status(200).json({linkMapa});
     
 

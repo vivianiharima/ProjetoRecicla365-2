@@ -5,8 +5,8 @@ const usuariosRoutes = new Router();
 
 
 usuariosRoutes.post('/', UsuarioController.cadastrarUsuario
-        /*
-        #swagger.tags = ['Usuários'],
+    /*
+    #swagger.tags = ['Usuários'],
     #swagger.description = 'Endpoint para cadastrar usuários',
     #swagger.parameters['Usuario'] = {
         in: 'body',
