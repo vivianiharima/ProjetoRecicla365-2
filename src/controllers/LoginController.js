@@ -27,7 +27,7 @@ class LoginController {
                     mensagem: 'Usuário não encontrado'})
             }
 
-            const token = sign({id: usuario.id}, process.env.JWT_SECRET, {expiresIn: '3h'})
+            const token = sign({id: usuario.id}, process.env.JWT_SECRET, {expiresIn: '1d'})
             
             return response.status(200).json({
                 usuario: usuario.nome, token: token})

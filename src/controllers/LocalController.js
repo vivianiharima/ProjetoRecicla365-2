@@ -4,7 +4,9 @@ const { pegarCoordenadasPeloCep, gerarLinkGoogleMaps } = require("../services/ma
 class LocalController {
     async cadastrarLocal(request, response){
         try {
-            const dados = request.body
+            const dados = request.body;
+            const usuarioId = request.usuarioId;
+
             if (!dados.nome || !dados.descricao || !dados.cep || !dados.rua || !dados.cidade || !dados.estado) {
                 return response.status(400).json({ mensagem: "Todos os campos obrigatórios devem ser preenchidos." });
             }
@@ -14,7 +16,8 @@ class LocalController {
                 nome: dados.nome,
                 descricao: dados.descricao, 
                 cep: cepNumeros,         
-                rua: dados.rua,          
+                rua: dados.rua,
+                bairro: dados.bairro,
                 cidade: dados.cidade,
                 estado: dados.estado,
                 complemento: dados.complemento,
