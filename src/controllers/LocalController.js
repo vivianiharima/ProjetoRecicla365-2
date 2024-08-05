@@ -83,12 +83,13 @@ class LocalController {
                 {   nome: dados.nome,
                     descricao: dados.descricao, 
                     cep: cepNumeros,         
-                    rua: dados.rua,          
+                    rua: dados.rua,
+                    bairro: dados.bairro,         
                     cidade: dados.cidade,
                     estado: dados.estado,
                     complemento: dados.complemento
                 },
-                { where: { id } } 
+                { where: { id: localId } } 
             );
 
             return response.status(200).json({ mensagem: "Local atualizado com sucesso:", local});

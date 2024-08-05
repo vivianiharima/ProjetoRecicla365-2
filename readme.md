@@ -3,7 +3,7 @@
 ## Sobre a plataforma
 
 **Recicla365** é uma plataforma que fornece um espaço para os usuarios cadastrarem e consultarem *pontos de coleta de resíduo*.
-Essa plataforma contribui com a troca de informação sobre os locais de coleta, onde os usuários poderem inserir descrições e consultar os locais e os tipos de resíduos coletados pelo mapa, facilitando o conhecimento dos pontos de coleta e promovendo a *reciclagem consciente*.
+Essa plataforma contribui com a troca de informação sobre os locais de coleta, onde os usuários poderão inserir descrições e consultar os locais e os tipos de resíduos coletados pelo mapa, facilitando o conhecimento dos pontos de coleta e promovendo a *reciclagem consciente*.
 
 ## Sobre o projeto
 
@@ -49,9 +49,10 @@ npm run start:dev
 - Cadastro de locais de coleta
 - Edição de locais de coleta
 - Listagem de todos os locais
-- Listagem de um local específico pelo Id
-- Exclusão de local
-- Geração de link do Google Maps para local específico pelo Id
+- Listagem de um local pelo Id
+- Atualização de um local pelo Id
+- Exclusão de local pelo Id
+- Geração de link do Google Maps para um local pelo Id
 
 ### Exemplo de uso:
 Para adicionar um ponto de coleta, faça uma requisição **POST** para o endpoint **'/locais'**, da seguinte forma:
