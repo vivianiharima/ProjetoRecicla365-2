@@ -81,18 +81,18 @@ class LocalController {
 
             await Local.update(
                 {   nome: dados.nome,
-                    descricao: dados.descricao, 
+                    descricao: dados.descricao || local.descricao,
                     cep: cepNumeros,         
                     rua: dados.rua,
                     bairro: dados.bairro,         
                     cidade: dados.cidade,
                     estado: dados.estado,
-                    complemento: dados.complemento
+                    complemento: dados.complemento || local.complemento
                 },
                 { where: { id: localId } } 
             );
-
-            return response.status(200).json({ mensagem: "Local atualizado com sucesso:", local});
+            const localAtualizado = await Local.findByPk(localId);
+            return response.status(200).json({ mensagem: "Local atualizado com sucesso:", localAtualizado});
 
         } catch (error) {
             console.log(error)
